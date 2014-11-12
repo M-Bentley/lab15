@@ -63,7 +63,7 @@ class MyApp:
 		global drawpad
                 drawpad.move(player,0, -10)
                 px1,py1,px2,py2 = drawpad.coords(player)
-                if py1 > drawpad.winfo_height():
+                if py1 < 0:
 		    drawpad.move(player, 0, 10)
         
         def moveDown(self, event):   
