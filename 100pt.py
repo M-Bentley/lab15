@@ -79,7 +79,7 @@ class MyApp:
 		global drawpad
                 drawpad.move(player, -10, 0)
                 px1,py1,px2,py2 = drawpad.coords(player)
-                if px1 > drawpad.winfo_width():
+                if px1 < 0:
 		    drawpad.move(player, 10, 0)
                 
         def moveRight(self, event):   
