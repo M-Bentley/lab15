@@ -62,21 +62,34 @@ class MyApp:
 		global player
 		global drawpad
                 drawpad.move(player,0, -10)
+                px1,py1,px2,py2 = drawpad.coords(player)
+                if py1 > drawpad.winfo_height():
+		    drawpad.move(player, 0, 10)
         
         def moveDown(self, event):   
 		global player
 		global drawpad
                 drawpad.move(player, 0, 10)
+                px1,py1,px2,py2 = drawpad.coords(player)
+                if py2 > drawpad.winfo_height():
+		    drawpad.move(player, 0, -10)
                 
         def moveLeft(self, event):   
 		global player
 		global drawpad
                 drawpad.move(player, -10, 0)
+                px1,py1,px2,py2 = drawpad.coords(player)
+                if px1 > drawpad.winfo_width():
+		    drawpad.move(player, 10, 0)
                 
         def moveRight(self, event):   
 		global player
 		global drawpad
                 drawpad.move(player, 10, 0)
+                px1,py1,px2,py2 = drawpad.coords(player)
+                if px2 > drawpad.winfo_width():
+		    drawpad.move(player, -10, 0)
+
     
          
         # Animate function that will bounce target left and right, and trigger the collision detection
