@@ -79,15 +79,17 @@ class MyApp:
                 drawpad.move(player, 10, 0)
     
          
-        # Animate function that will bounce target left and right, and trigger the collision detection  
+        # Animate function that will bounce target left and right, and trigger the collision detection
+          
 	def animate(self):
 	    global target
-	    global direction    
-	    # Insert the code here to make the target move, bouncing on the edges    
-	    x1,y1,x2,y2 = drawpad.coords(target)
-	    if x2 > drawpad.winfo_width():
-	        direction = -600
-	    elif x1 < 0:
+	    global direction
+	    tx1,ty1,tx2,ty2 = drawpad.coords(target)    
+	    # Insert the code here to make the target move, bouncing on the edges
+	    drawpad.move(target,direction,0)       
+	    if tx2 > drawpad.winfo_width():
+	        direction = -4
+	    elif tx1 < 0:
 	        direction = 4   
             
             #  This will trigger our collision detect function
@@ -96,19 +98,21 @@ class MyApp:
             if didWeHit == False:
                 drawpad.after(1, self.animate)
             else:
-            # that determines whether to run drawpad.after(1,self.animate) or not
-            
+                pass
+        # that determines whether to run drawpad.after(1,self.animate) or not
 	# Use a function to do our collision detection
-	def collisionDetect(self):
+	
+        def collisionDetect(self):
+            
                 global target
 		global drawpad
                 global player
                 # Get the co-ordinates of our player AND our target
                 # using x1,y1,x2,y2 = drawpad.coords(object)
-                x1,y1,x2,y2 = drawpad.coords(target)
+                tx1,ty1,tx2,ty2 = drawpad.coords(target)
                 px1,py1,px2,py2 = drawpad.coords(player)
                 # Do your if statement - remember to return True if successful!                
-		if (px1 > x1 and px2 < x2) and (py1 > y1 and py2 < y2) :
+		if (px1 > tx1 and px2 < tx2) and (py1 > ty1 and py2 < ty2) :
 		    return True
 		else:
 		    return False
